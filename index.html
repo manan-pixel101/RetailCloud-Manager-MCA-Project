@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RetailCloud Manager | MCA AWS Cloud Project</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1480.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="login-section" id="loginSection">
+        <div class="login-card">
+            <div class="brand-badge">AWS MCA PROJECT</div>
+            <h1>RetailCloud Manager</h1>
+            <p class="subtitle">Cloud-based document management system for small retail businesses.</p>
+
+            <div class="demo-users">
+                <span><strong>Admin:</strong> admin / admin123</span>
+                <span><strong>Manager:</strong> manager / manager123</span>
+                <span><strong>Employee:</strong> employee / emp123</span>
+            </div>
+
+            <input type="text" id="username" placeholder="Username" autocomplete="off">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Secure Login</button>
+            <p id="loginStatus" class="error-text"></p>
+        </div>
+    </section>
+
+    <main id="dashboard" style="display:none;">
+        <header class="topbar">
+            <div class="topbar-text">
+                <p class="eyebrow">Implementation of Cloud Computing in Small Business Operations</p>
+                <h1>RetailCloud Manager</h1>
+                <p>AWS-based cloud storage and approval workflow for invoices, stock reports, purchase orders and business documents.</p>
+            </div>
+
+            <div class="user-pill">
+                <span>Logged in as</span>
+                <strong id="currentUser"></strong>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <section class="dashboard-grid">
+            <div class="metric-card">
+                <span>Total Cloud Files</span>
+                <strong id="totalFiles">0</strong>
+                <p>Records loaded from DynamoDB</p>
+            </div>
+
+            <div class="metric-card">
+                <span>Storage Used</span>
+                <strong id="storageUsed">0 KB</strong>
+                <p>Tracked from document metadata</p>
+            </div>
+
+            <div class="metric-card">
+                <span>Cloud Region</span>
+                <strong>ap-south-1</strong>
+                <p>Mumbai AWS region</p>
+            </div>
+
+            <div class="metric-card success">
+                <span>Backend Status</span>
+                <strong>Connected</strong>
+                <p>API Gateway, Lambda, S3 and DynamoDB active</p>
+            </div>
+        </section>
+
+        <section class="workspace">
+            <section class="panel upload-panel" id="uploadBox">
+                <div class="section-heading">
+                    <span>Retail Operations</span>
+                    <h2>Upload Business Document</h2>
+                    <p>Managers and admins can upload documents. Each upload is stored in S3 and sent for admin approval.</p>
+                </div>
+
+                <div class="form-grid">
+                    <div>
+                        <label for="documentCategory">Document Category</label>
+                        <select id="documentCategory">
+                            <option value="invoices">Customer Invoices</option>
+                            <option value="stock-reports">Stock Reports</option>
+                            <option value="purchase-orders">Purchase Orders</option>
+                            <option value="tax-documents">Tax Documents</option>
+                            <option value="employee-records">Employee Records</option>
+                            <option value="miscellaneous">Miscellaneous</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="fileInput">Choose File</label>
+                        <input type="file" id="fileInput">
+                    </div>
+                </div>
+
+                <button onclick="uploadFile()">Upload Securely to AWS S3</button>
+                <p id="uploadStatus" class="status-text"></p>
+            </section>
+
+            <section class="panel file-explorer">
+                <div class="section-heading row-heading">
+                    <div>
+                        <span>Cloud File Explorer</span>
+                        <h2>Retail Business Documents</h2>
+                        <p>Track approval status and access files using temporary secure S3 links.</p>
+                    </div>
+                    <button class="secondary-btn" onclick="loadFiles()">Refresh Files</button>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Document Name</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Size</th>
+                                <th>Last Modified</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fileTableBody">
+                            <tr><td colspan="6" class="empty-state">Loading cloud data...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
