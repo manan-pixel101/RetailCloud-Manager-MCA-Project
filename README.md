@@ -28,3 +28,21 @@ Manan Jangid
 O24MCA111885  
 MCA Final Year Project  
 Chandigarh University
+
+## Live Project Demo
+
+AWS Hosted Link:
+[http://retailcloud-manager-live-manan.s3-website.ap-south-1.amazonaws.com
+
+RetailCloud Manager is deployed using Amazon S3 static website hosting integrated with API Gateway, AWS Lambda, and DynamoDB services.
+
+## Architecture
+
+Frontend → API Gateway → AWS Lambda → Amazon S3 + DynamoDB
+
+## Developed By
+
+Manan Jangid  
+Enrollment: O24MCA111885  
+MCA Final Year Project  
+Chandigarh University
